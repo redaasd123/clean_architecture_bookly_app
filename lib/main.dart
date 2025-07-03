@@ -4,14 +4,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
-
 import 'constants.dart';
 import 'core/utils/app_router.dart';
 
 void main() async {
-  runApp(BooklyApp());
+  await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
-  await Hive.openBox(kFeaturedBooks);
+  await Hive.openBox<BookEntity>(kFeaturedBooks);
+  await Hive.openBox<BookEntity>(kNewestBooks);
+  runApp(BooklyApp());
 }
 
 class BooklyApp extends StatelessWidget {

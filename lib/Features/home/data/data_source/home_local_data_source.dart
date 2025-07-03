@@ -1,3 +1,6 @@
+import 'package:bookly_app/constants.dart';
+import 'package:hive/hive.dart';
+
 import '../../domain/entity/book_entity.dart';
 
 abstract class HomeLocalDataSource{
@@ -9,13 +12,13 @@ abstract class HomeLocalDataSource{
 class HomeLocalDataSourceImpl extends HomeLocalDataSource{
   @override
   List<BookEntity> fetchFeaturedBook() {
-    // TODO: implement fetchFeaturedBook
-    throw UnimplementedError();
+    var box  = Hive.box<BookEntity>(kFeaturedBooks);
+    return box.values.toList();
   }
 
   @override
   List<BookEntity> fetchNewestBook() {
-    // TODO: implement fetchNewestBook
-    throw UnimplementedError();
+    var box  = Hive.box<BookEntity>(kNewestBooks);
+    return box.values.toList();
   }
 }
