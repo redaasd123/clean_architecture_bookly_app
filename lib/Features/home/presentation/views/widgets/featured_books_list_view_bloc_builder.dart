@@ -11,7 +11,6 @@ class FeaturedBooksListViewBlocBuilder extends StatelessWidget {
 
 
   const FeaturedBooksListViewBlocBuilder({super.key, });
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FeaturedBookCubit, FeaturedBookState>(
@@ -20,8 +19,8 @@ class FeaturedBooksListViewBlocBuilder extends StatelessWidget {
           return FeaturedBooksListView(book:state.books,);
         }else if(state is FeaturedBookFailure){
         return Text(state.errMessage);
-        }else{
-         return CustomProgressIndicator();
+         }else{
+          return CustomProgressIndicator();
         }
 
       },
