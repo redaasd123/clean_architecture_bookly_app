@@ -1,11 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:bookly_app/Features/home/domain/use_cases/fetch_featured_books_use_case.dart';
 import 'package:bookly_app/Features/home/domain/use_cases/fetch_newest_Books_uses_case.dart';
 import 'package:meta/meta.dart';
-
 import '../../../domain/entity/book_entity.dart';
-import '../../../domain/use_cases/fetch_newest_Books_uses_case.dart';
-
 part 'newest_book_state.dart';
 
 class NewestBookCubit extends Cubit<NewestBookState> {

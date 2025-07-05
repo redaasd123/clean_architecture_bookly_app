@@ -237,9 +237,10 @@ class VolumeInfo {
     publishedDate: json["publishedDate"],
     authors: json["authors"] == null
         ? []
-        : List<String>.from(json["authors"]), // ✅ هنا
-    industryIdentifiers: List<IndustryIdentifier>.from(
-        json["industryIdentifiers"].map((x) => IndustryIdentifier.fromJson(x))),
+        : List<String>.from(json["authors"]),
+    industryIdentifiers: (json["industryIdentifiers"] as List?)
+        ?.map((x) => IndustryIdentifier.fromJson(x))
+        .toList() ?? [],
     readingModes: ReadingModes.fromJson(json["readingModes"]),
     pageCount: json["pageCount"],
     printType: json["printType"],
