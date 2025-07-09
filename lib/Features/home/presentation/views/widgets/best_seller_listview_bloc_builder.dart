@@ -22,11 +22,6 @@ class _BestSellerListViewBlocBuilderState extends State<BestSellerListViewBlocBu
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NewestBookCubit, NewestBookState>(
-      listener: (context, state) {
-        if (state is NewestBookSuccess) {
-          books.addAll(state.books);
-        }
-      },
       builder: (context, state) {
         if (state is NewestBookSuccess||
         state is NewestBookPaginationLoading
@@ -36,6 +31,11 @@ class _BestSellerListViewBlocBuilderState extends State<BestSellerListViewBlocBu
           return Text(state.errMessage);
         } else {
           return NewestBookListViewLoadingFading();
+        }
+      },
+      listener: (context, state) {
+        if (state is NewestBookSuccess) {
+          books.addAll(state.books);
         }
       },
     );

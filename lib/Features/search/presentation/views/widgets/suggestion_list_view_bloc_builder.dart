@@ -29,7 +29,7 @@ class SuggestionListViewBlocBuilder extends StatelessWidget {
                 return ListTile(
                   title: Text(suggestion,style: Styles.textStyle18,),
                   onTap: () {
-                    FocusScope.of(context).unfocus(); // يقفل الكيبورد
+                    FocusScope.of(context).unfocus();
                     BlocProvider.of<SearchCubit>(context)
                         .searchBooks(suggestion);
                   },
@@ -44,3 +44,4 @@ class SuggestionListViewBlocBuilder extends StatelessWidget {
     );
   }
 }
+

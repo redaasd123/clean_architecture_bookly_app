@@ -1,4 +1,4 @@
-import 'package:bookly_app/Features/search/data/search_remote_data_source.dart';
+import 'package:bookly_app/Features/search/data/data_source/search_remote_data_source.dart';
 import 'package:bookly_app/Features/search/domain/use_case/search_use_case.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';

@@ -15,11 +15,11 @@ class SearchCubit extends Cubit<SearchState> {
 //ده Getter (مش فانكشن):
 // بيرجع كل العناوين اللي موجودة في _cachedBooks من غير تكرار.
 // بنستخدمه في عرض اقتراحات للمستخدم.
-  List<String> get suggestions => _cachedBooks
-      .map((book) => book.title)
-      .where((title) => title.isNotEmpty)
-      .toSet()
-      .toList();
+//   List<String> get suggestions => _cachedBooks
+//       .map((book) => book.title)
+//       .where((title) => title.isNotEmpty)
+//       .toSet()
+//       .toList();
 
   Future<void> searchBooks(String query) async {
     if (query.trim().isEmpty) {

@@ -24,7 +24,6 @@ class _FeaturedBooksListViewBlocBuilderState extends State<FeaturedBooksListView
   Widget build(BuildContext context) {
     return BlocConsumer<FeaturedBookCubit,FeaturedBookState>
       (builder: (context,state){
-
       if(state is FeaturedBookSuccess||
           state is FeaturedBookPaginationFailure
       ||state is FeaturedBookPaginationLoading){

@@ -28,7 +28,7 @@ class BookModel extends BookEntity {
     required this.accessInfo,
     this.searchInfo,
   }) : super(
-    previewLink: volumeInfo.previewLink ?? '',
+    previewLink: saleInfo.buyLink ?? volumeInfo.previewLink,
     category: (volumeInfo.categories?.isNotEmpty ?? false)
         ? volumeInfo.categories!.first
         : "Unknown",

@@ -15,7 +15,7 @@ class SearchViewBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(
+           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -26,12 +26,6 @@ class SearchViewBody extends StatelessWidget {
               ],
             ),
           ),
-
-          // ✅ اقتراحات البحث
-          SliverToBoxAdapter(
-            child: SuggestionListViewBlocBuilder()
-          ),
-
           // ✅ نتائج البحث
           ResultSearchListViewBlocBuilder()
         ],

@@ -13,13 +13,19 @@ class SimilarBooksCubit extends Cubit<SimilarBooksState> {
   final FetchSimilarBooksUseCase fetchSimilarBooks;
 
   Future<void> fetchSimilarBook({required String category,int pageNumber = 0})async{
-    print("📥 fetching page number  redadadda: $pageNumber");
-    emit(SimilarBooksLoading());
-
+    if(pageNumber == 0){
+      emit(SimilarBooksLoading());
+    }else{
+      emit(SimilarBooksPaginationLoading());
+    }
     var result = await fetchSimilarBooks.call( FetchSimilarBooksParams(
         category: category, pageNumber: pageNumber));
     result.fold((failure){
-      emit(SimilarBooksFailure(errMessage: failure.errMessage));
+      if(pageNumber==0){
+        emit(SimilarBooksFailure(errMessage: failure.errMessage));
+      }else{
+        emit(SimilarBooksPaginationFailure(errMessage: failure.errMessage));
+      }
     }, (book){
       emit(SimilarBooksSuccess(book: book));
     });

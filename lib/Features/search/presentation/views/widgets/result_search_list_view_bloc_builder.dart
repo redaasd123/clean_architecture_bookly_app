@@ -21,7 +21,7 @@ class  ResultSearchListViewBlocBuilder extends StatelessWidget {
         } else if (state is SearchLoadingState) {
           return const SliverToBoxAdapter(
             child: Center(
-              child: CircularProgressIndicator(),
+              child: const CircularProgressIndicator(),
             ),
           );
         }

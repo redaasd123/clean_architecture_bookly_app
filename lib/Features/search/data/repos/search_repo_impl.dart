@@ -1,6 +1,6 @@
 import 'package:bookly_app/Features/home/domain/entity/book_entity.dart';
 import 'package:bookly_app/Features/home/domain/repo/home_repo.dart';
-import 'package:bookly_app/Features/search/data/search_remote_data_source.dart';
+import 'package:bookly_app/Features/search/data/data_source/search_remote_data_source.dart';
 import 'package:bookly_app/Features/search/domain/repo/search_repo.dart';
 import 'package:bookly_app/core/errors/failure.dart';
 import 'package:dartz/dartz.dart';

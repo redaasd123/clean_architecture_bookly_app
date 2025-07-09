@@ -7,13 +7,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 class CustomSearchTextField extends StatelessWidget {
-  const CustomSearchTextField({super.key});
+   CustomSearchTextField({super.key});
+  final TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         TextField(
+          controller: controller,
           onChanged: (value) {
             final cubit = BlocProvider.of<SearchCubit>(context);
             cubit.updateSuggestions(value);
@@ -29,7 +31,11 @@ class CustomSearchTextField extends StatelessWidget {
             hintText: 'Search',
             suffixIcon: IconButton(
               onPressed: () {
-                // ✅ ممكن نستخدم القيمة الأخيرة في الاقتراحات
+                final query = controller.text.trim();
+                if (query.isNotEmpty && query.length >= 2) {
+                  BlocProvider.of<SearchCubit>(context).searchBooks(query);
+                  FocusScope.of(context).unfocus(); //
+                }
               },
               icon: const Opacity(
                 opacity: .8,
@@ -44,7 +50,8 @@ class CustomSearchTextField extends StatelessWidget {
         const SizedBox(height: 10),
 
         // ✅ الاقتراحات التلقائية
-        SuggestionListViewBlocBuilder()
+        // ✅ اقتراحات البحث
+        SuggestionListViewBlocBuilder(),
       ],
     );
   }

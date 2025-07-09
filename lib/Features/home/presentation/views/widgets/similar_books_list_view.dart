@@ -1,5 +1,6 @@
 import 'package:bookly_app/Features/home/domain/entity/book_entity.dart';
 import 'package:bookly_app/core/use_case/params/fetch_similar_books_params.dart';
+import 'package:bookly_app/core/utils/assets.dart';
 import 'package:bookly_app/core/utils/funcation/launch_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,7 +69,7 @@ class _SimilarBooksListviewState extends State<SimilarBooksListview> {
                 onTap: (){
                   launchPreviewLink(widget.bookEntity[index].previewLink);
                 },
-                child: CustomBookImage(image: widget.bookEntity[index].image ?? '')),
+                child: CustomBookImage(image: widget.bookEntity[index].image ?? AssetsData.testImage)),
           );
         },
       ),
