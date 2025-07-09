@@ -6,7 +6,8 @@ import '../../domain/entity/book_entity.dart';
 abstract class HomeLocalDataSource{
 
   List<BookEntity> fetchFeaturedBook({int pageNumber = 0});
-  List<BookEntity> fetchNewestBook();
+  List<BookEntity> fetchNewestBook({ int pageNumber = 0});
+  List<BookEntity> fetchSimilarBook({required String category, int pageNumber = 0});
 }
 
 class HomeLocalDataSourceImpl extends HomeLocalDataSource{
@@ -16,14 +17,52 @@ class HomeLocalDataSourceImpl extends HomeLocalDataSource{
     int endIndex = (pageNumber+1)*10;
     var box  = Hive.box<BookEntity>(kFeaturedBooks);
     int length = box.values.length;
-    if (startIndex>=length||endIndex>length) {
+    if (startIndex>=length) {
       return[];
-    }return box.values.toList().sublist(startIndex,endIndex);
+    }if(endIndex>length){
+     endIndex = length;
+    }
+
+    return box.values.toList().sublist(startIndex,endIndex);
   }
 
   @override
-  List<BookEntity> fetchNewestBook() {
-    var box  = Hive.box<BookEntity>(kNewestBooks);
-    return box.values.toList();
+  List<BookEntity> fetchNewestBook({int pageNumber = 0}) {
+
+    int startIndex = pageNumber * 10;
+    int endIndex = (pageNumber + 1) * 10;
+    var box = Hive.box<BookEntity>(kNewestBooks);
+    int length = box.values.length;
+    print('📦 Hive cache length: ${box.values.length}');
+    print('🔎 Getting books from $startIndex to $endIndex');
+
+    if (startIndex >= length) {
+      return [];
+    }
+
+    if (endIndex > length) {
+      endIndex = length;
+    }
+
+    return box.values.toList().sublist(startIndex, endIndex);
   }
-}
+
+  @override
+  List<BookEntity> fetchSimilarBook({required String category, int pageNumber = 0}) {
+    int startIndex = pageNumber*10;
+    int endIndex = (pageNumber+1)*10;
+    var box  = Hive.box<BookEntity>(kSimilarBooks);
+    int length = box.values.length;
+    if (startIndex>=length) {
+      return[];
+    }if(endIndex>length){
+      endIndex = length;
+    }
+
+    return box.values.toList().sublist(startIndex,endIndex);
+
+  }
+
+  }
+
+

@@ -17,19 +17,33 @@ import 'constants.dart';
 import 'core/utils/app_router.dart';
 import 'core/utils/bloc_observe.dart';
 import 'core/utils/funcation/setup_serviece_locator.dart';
-
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
+
+
+  // await Hive.deleteBoxFromDisk(kFeaturedBooks);
+  // await Hive.deleteBoxFromDisk(kNewestBooks);
+  // await Hive.deleteBoxFromDisk(kSimilarBooks);
+
+  // ✅ بعدين افتح الصناديق من جديد
   await Hive.openBox<BookEntity>(kFeaturedBooks);
   await Hive.openBox<BookEntity>(kNewestBooks);
-  setUpServieceLocator();
+  await Hive.openBox<BookEntity>(kSimilarBooks);
+
+  // التهيئة والباقي
+  setUpServiceLocator();
   Bloc.observer = MyBlocObserver();
   runApp(BooklyApp());
 }
 
-
-
+// Future<void> clearAllHiveCache() async {
+//   await Hive.box<BookEntity>(kFeaturedBooks).clear();
+//   await Hive.box<BookEntity>(kNewestBooks).clear();
+//   print('✅ تم مسح بيانات Hive المؤقتة بنجاح');
+// }
 
 class BooklyApp extends StatelessWidget {
   @override
@@ -43,7 +57,10 @@ class BooklyApp extends StatelessWidget {
           ,),
 
         BlocProvider(create: (context)=>NewestBookCubit(
-            fetchNewestBooksUseCase(getIt.get<HomeRepoImpl>())))
+            fetchNewestBooksUseCase(getIt.get<HomeRepoImpl>(),
+            ),
+        )..fetchNewestBook()
+        )
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,

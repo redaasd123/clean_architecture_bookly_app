@@ -1,18 +1,21 @@
+import 'package:bookly_app/core/utils/funcation/launch_url.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/widgets/custom_button.dart';
 
 class BooksAction extends StatelessWidget {
-  const BooksAction({super.key});
-
+  const BooksAction({super.key, required this.preViewLink});
+final String preViewLink;
+ final bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
-        children: const [
-          Expanded(
+        children: [
+           Expanded(
               child: CustomButton(
+                onPressed: (){},
             text: '19.99€',
             backgroundColor: Colors.white,
             textColor: Colors.black,
@@ -23,11 +26,18 @@ class BooksAction extends StatelessWidget {
           )),
           Expanded(
               child: CustomButton(
+                onPressed: (){
+                  if(isLoading) {
+                     Center(child: CircularProgressIndicator());
+                  }else {
+                    launchPreviewLink(preViewLink);
+                  }
+                },
             fontSize: 16,
             text: 'Free Preview',
-            backgroundColor: Color(0xffEF8262),
+            backgroundColor: const Color(0xffEF8262),
             textColor: Colors.white,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topRight: Radius.circular(16),
               bottomRight: Radius.circular(16),
             ),

@@ -1,9 +1,11 @@
 import 'package:bookly_app/Features/home/domain/entity/book_entity.dart';
+import 'package:bookly_app/Features/home/presentation/views/widgets/featured_book_list_view_loading_fading.dart';
 import 'package:bookly_app/core/widgets/custom_fading_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/utils/funcation/custom_snack_bar.dart';
 import '../../manager/featured_book_cubit/featured_book_cubit.dart';
 import 'featured_list_view.dart';
 
@@ -22,14 +24,15 @@ class _FeaturedBooksListViewBlocBuilderState extends State<FeaturedBooksListView
   Widget build(BuildContext context) {
     return BlocConsumer<FeaturedBookCubit,FeaturedBookState>
       (builder: (context,state){
+
       if(state is FeaturedBookSuccess||
-          state is FeaturedBookPaginationLoading
-      ||state is FeaturedBookPaginationFailure){
+          state is FeaturedBookPaginationFailure
+      ||state is FeaturedBookPaginationLoading){
         return FeaturedBooksListView(book:books,);
       }else if(state is FeaturedBookFailure){
         return Text(state.errMessage);
       }else{
-        return CircularProgressIndicator();
+        return const FeaturedBookListViewLoadingFading();
       }
     },
         listener: (context,state){
@@ -39,8 +42,7 @@ class _FeaturedBooksListViewBlocBuilderState extends State<FeaturedBooksListView
         if(state is FeaturedBookPaginationFailure){
           ScaffoldMessenger.of(context).showSnackBar(
             CustomSnackBar(
-              message: 'please wait,'
-                        'try later',
+              message:'try later',
               backgroundColor: Colors.green,
             ),
           );
@@ -51,22 +53,3 @@ class _FeaturedBooksListViewBlocBuilderState extends State<FeaturedBooksListView
   }
 }
 
-class CustomSnackBar extends SnackBar {
-  CustomSnackBar({
-    required String message,
-    Color backgroundColor = Colors.black,
-    Duration duration = const Duration(seconds: 2),
-  }) : super(
-    content: Text(
-      message,
-      style: TextStyle(color: Colors.white),
-    ),
-    backgroundColor: backgroundColor,
-    duration: duration,
-    behavior: SnackBarBehavior.floating,
-    margin: EdgeInsets.all(16),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(12),
-    ),
-  );
-}

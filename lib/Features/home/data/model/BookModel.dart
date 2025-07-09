@@ -2,8 +2,9 @@ import 'dart:convert';
 
 
 import '../../domain/entity/book_entity.dart';
+BookModel bookModelFromJson(String str) =>
+    BookModel.fromJson(json.decode(str));
 
-BookModel bookModelFromJson(String str) => BookModel.fromJson(json.decode(str));
 String bookModelToJson(BookModel data) => json.encode(data.toJson());
 
 class BookModel extends BookEntity {
@@ -16,7 +17,8 @@ class BookModel extends BookEntity {
   AccessInfo accessInfo;
   SearchInfo? searchInfo;
 
-  BookModel({
+  // ✅ استخدمنا Constructor داخلي لحل مشكلة volumeInfo في الـ super
+  BookModel._internal({
     required this.kind,
     required this.id,
     required this.etag,
@@ -25,25 +27,48 @@ class BookModel extends BookEntity {
     required this.saleInfo,
     required this.accessInfo,
     this.searchInfo,
-
-  }) : super(bookId: id,
-    image: volumeInfo?.imageLinks?.thumbnail??'',
-  authorName: volumeInfo.authors?.isNotEmpty==true
-      ? volumeInfo.authors!.first :'كاتب غير معروف',
-    price: 0.0,rating: volumeInfo.averageRating,title: volumeInfo.title);
-
-  factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
-    kind: json["kind"],
-    id: json["id"],
-    etag: json["etag"],
-    selfLink: json["selfLink"],
-    volumeInfo: VolumeInfo.fromJson(json["volumeInfo"]),
-    saleInfo: SaleInfo.fromJson(json["saleInfo"]),
-    accessInfo: AccessInfo.fromJson(json["accessInfo"]),
-    searchInfo: json["searchInfo"] != null
-        ? SearchInfo.fromJson(json["searchInfo"])
-        : null,
+  }) : super(
+    previewLink: volumeInfo.previewLink ?? '',
+    category: (volumeInfo.categories?.isNotEmpty ?? false)
+        ? volumeInfo.categories!.first
+        : "Unknown",
+    count: volumeInfo.ratingsCount ?? 0,
+    bookId: id,
+    image: volumeInfo.imageLinks?.thumbnail ?? '',
+    authorName: volumeInfo.authors?.isNotEmpty == true
+        ? volumeInfo.authors![0]
+        : 'كاتب غير معروف',
+    price: 0.0,
+    rating: volumeInfo.averageRating,
+    title: volumeInfo.title,
   );
+
+  factory BookModel.fromJson(Map<String, dynamic> json) {
+    final volumeInfoJson = json["volumeInfo"];
+    final saleInfoJson = json["saleInfo"];
+    final accessInfoJson = json["accessInfo"];
+
+    if (volumeInfoJson == null ||
+        saleInfoJson == null ||
+        accessInfoJson == null) {
+      throw Exception("Missing required book data");
+    }
+
+    final volumeInfo = VolumeInfo.fromJson(volumeInfoJson);
+
+    return BookModel._internal(
+      kind: json["kind"] ?? '',
+      id: json["id"] ?? '',
+      etag: json["etag"] ?? '',
+      selfLink: json["selfLink"] ?? '',
+      volumeInfo: volumeInfo,
+      saleInfo: SaleInfo.fromJson(saleInfoJson),
+      accessInfo: AccessInfo.fromJson(accessInfoJson),
+      searchInfo: json["searchInfo"] != null
+          ? SearchInfo.fromJson(json["searchInfo"])
+          : null,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
     "kind": kind,
@@ -233,33 +258,37 @@ class VolumeInfo {
   });
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
-    title: json["title"],
-    publishedDate: json["publishedDate"],
+    title: json["title"] ?? "No Title",
+    publishedDate: json["publishedDate"] ?? "Unknown",
     authors: json["authors"] == null
         ? []
         : List<String>.from(json["authors"]),
     industryIdentifiers: (json["industryIdentifiers"] as List?)
         ?.map((x) => IndustryIdentifier.fromJson(x))
         .toList() ?? [],
-    readingModes: ReadingModes.fromJson(json["readingModes"]),
-    pageCount: json["pageCount"],
-    printType: json["printType"],
+    readingModes: json["readingModes"] != null
+        ? ReadingModes.fromJson(json["readingModes"])
+        : ReadingModes(text: false, image: false),
+    pageCount: json["pageCount"] ?? 0,
+    printType: json["printType"] ?? "Unknown",
     categories: json["categories"] == null
         ? []
         : List<String>.from(json["categories"]),
-    maturityRating: json["maturityRating"],
-    allowAnonLogging: json["allowAnonLogging"],
-    contentVersion: json["contentVersion"],
-    panelizationSummary: PanelizationSummary.fromJson(json["panelizationSummary"]),
+    maturityRating: json["maturityRating"] ?? "Unknown",
+    allowAnonLogging: json["allowAnonLogging"] ?? false,
+    contentVersion: json["contentVersion"] ?? "",
+    panelizationSummary: json["panelizationSummary"] != null
+        ? PanelizationSummary.fromJson(json["panelizationSummary"])
+        : PanelizationSummary(containsEpubBubbles: false, containsImageBubbles: false),
     imageLinks: json["imageLinks"] != null
         ? ImageLinks.fromJson(json["imageLinks"])
         : null,
-    language: json["language"],
-    previewLink: json["previewLink"],
-    infoLink: json["infoLink"],
-    canonicalVolumeLink: json["canonicalVolumeLink"],
-    averageRating: json["averageRating"]?.toDouble(),
-    ratingsCount: json["ratingsCount"],
+    language: json["language"] ?? "Unknown",
+    previewLink: json["previewLink"] ?? "",
+    infoLink: json["infoLink"] ?? "",
+    canonicalVolumeLink: json["canonicalVolumeLink"] ?? "",
+    averageRating: json["averageRating"]?.toDouble() ?? 0.0,
+    ratingsCount: json["ratingsCount"] ?? 0,
   );
 
   Map<String, dynamic> toJson() => {

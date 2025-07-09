@@ -32,14 +32,14 @@ class HomeRepoImpl extends HomeRepo{
   }
 
   @override
-  Future<Either<Failure, List<BookEntity>>> fetchNewestBook()async {
+  Future<Either<Failure, List<BookEntity>>> fetchNewestBook({int pageNumber = 0})async {
 
-    var bookList= await homeLocalDataSource.fetchNewestBook();
+    var bookList= await homeLocalDataSource.fetchNewestBook(pageNumber: pageNumber);
     if(bookList.isNotEmpty){
       return right(bookList);
     }
     try {
-      var books = await homeRemoteDataSource.fetchNewestBook();
+      var books = await homeRemoteDataSource.fetchNewestBook(pageNumber: pageNumber);
       return right(books);
     } on Exception catch (e) {
       if(e is DioError){
@@ -50,4 +50,27 @@ class HomeRepoImpl extends HomeRepo{
     }
 
   }
-}
+
+  @override
+  Future<Either<Failure, List<BookEntity>>>
+  fetchSimilarBooks({required String category,int pageNumber = 0})async {
+    var bookList= await homeLocalDataSource.fetchSimilarBook
+      (category: category,
+        pageNumber: pageNumber);
+    if(bookList.isNotEmpty){
+      return right(bookList);
+    }
+    try {
+      var books = await homeRemoteDataSource.fetchSimilarBooks(
+          category: category
+      ,pageNumber: pageNumber);
+      return right(books);
+    } on Exception catch (e) {
+      if(e is DioError){
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+
+    }
+
+  }}

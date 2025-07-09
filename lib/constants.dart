@@ -5,3 +5,4 @@ const kTranstionDuration = Duration(milliseconds: 250);
 const kGtSectraFine = 'GT Sectra Fine';
 const kFeaturedBooks  = 'FeaturedBooks';
 const kNewestBooks  = 'NewestBooks';
+const kSimilarBooks  = 'kSimilarBooks';
