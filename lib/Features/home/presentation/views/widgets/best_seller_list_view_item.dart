@@ -8,8 +8,8 @@ import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/styles.dart';
 import 'book_rating.dart';
 
-class BookListViewItem extends StatelessWidget {
-  const BookListViewItem({super.key, required this.bookEntity});
+class BestSellerListViewItem extends StatelessWidget {
+  const BestSellerListViewItem({super.key, required this.bookEntity});
   final BookEntity bookEntity;
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,9 @@ class BookListViewItem extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 2.5 / 4,
-              child: CustomBookImage(image: bookEntity.image??
+              child: CustomBookImage(
+                  book: bookEntity,
+                  image: bookEntity.image??
               AssetsData.testImage)
             ),
             const SizedBox(

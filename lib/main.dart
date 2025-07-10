@@ -14,6 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'constants.dart';
+import 'core/theme/theme.dart';
 import 'core/utils/app_router.dart';
 import 'core/utils/bloc_observe.dart';
 import 'core/utils/funcation/setup_serviece_locator.dart';
@@ -23,53 +24,75 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
 
-
-  // await Hive.deleteBoxFromDisk(kFeaturedBooks);
-  // await Hive.deleteBoxFromDisk(kNewestBooks);
-  // await Hive.deleteBoxFromDisk(kSimilarBooks);
-
-  // ✅ بعدين افتح الصناديق من جديد
   await Hive.openBox<BookEntity>(kFeaturedBooks);
   await Hive.openBox<BookEntity>(kNewestBooks);
   await Hive.openBox<BookEntity>(kSimilarBooks);
+  await Hive.openBox<BookEntity>(kSearchBooks);
+  await Hive.openBox<BookEntity>(kSaveFavorite);
 
-  // التهيئة والباقي
   setUpServiceLocator();
   Bloc.observer = MyBlocObserver();
-  runApp(BooklyApp());
+
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const BooklyApp(),
+    ),
+  );
 }
 
-// Future<void> clearAllHiveCache() async {
-//   await Hive.box<BookEntity>(kFeaturedBooks).clear();
-//   await Hive.box<BookEntity>(kNewestBooks).clear();
-//   print('✅ تم مسح بيانات Hive المؤقتة بنجاح');
-// }
+
+
+Future<void> clearAllHiveCache() async {
+  await Hive.box<BookEntity>(kFeaturedBooks).clear();
+  await Hive.box<BookEntity>(kNewestBooks).clear();
+  print('✅ تم مسح بيانات Hive المؤقتة بنجاح');
+}
 
 class BooklyApp extends StatelessWidget {
+  const BooklyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => FeaturedBookCubit(
-            fetchFeaturedBooksUseCase(getIt.get<HomeRepoImpl>(),
-            )
-          ,)..fetchFeaturedBooks()
-          ,),
-
-        BlocProvider(create: (context)=>NewestBookCubit(
-            fetchNewestBooksUseCase(getIt.get<HomeRepoImpl>(),
-            ),
-        )..fetchNewestBook()
-        )
+        BlocProvider(
+          create: (context) => FeaturedBookCubit(
+            fetchFeaturedBooksUseCase(getIt.get<HomeRepoImpl>()),
+          )..fetchFeaturedBooks(),
+        ),
+        BlocProvider(
+          create: (context) => NewestBookCubit(
+            fetchNewestBooksUseCase(getIt.get<HomeRepoImpl>()),
+          )..fetchNewestBook(),
+        ),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: kPrimaryColor,
-          textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
+        theme: ThemeData.light().copyWith(
+          scaffoldBackgroundColor: Colors.white,
+          textTheme:
+          GoogleFonts.montserratTextTheme(ThemeData.light().textTheme),
         ),
+        darkTheme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: kPrimaryColor,
+          textTheme:
+          GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
+        ),
+        themeMode: themeProvider.themeMode, // ✅ هنا بيبدّل بين الوضعين
       ),
     );
   }
 }
+
+
+
+//  // ✅ امسح قبل ما تفتح أي صندوق
+//   // await Hive.deleteBoxFromDisk(kFeaturedBooks);
+//   // await Hive.deleteBoxFromDisk(kNewestBooks);
+//   // await Hive.deleteBoxFromDisk(kSimilarBooks);
+//   // await Hive.deleteBoxFromDisk(kSearchBooks);
+//   // await Hive.deleteBoxFromDisk(kSaveFavorite);

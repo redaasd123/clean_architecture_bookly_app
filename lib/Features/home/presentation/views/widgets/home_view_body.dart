@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/styles.dart';
 import 'custom_app_bar.dart';
 import 'featured_books_list_view_bloc_builder.dart';
@@ -16,21 +18,21 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: CustomAppBar(),
               ),
-              FeaturedBooksListViewBlocBuilder(),
-              SizedBox(height: 50),
-              Padding(
+              const FeaturedBooksListViewBlocBuilder(),
+              const SizedBox(height: 50),
+              const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 child: Text(
                   'Best Seller',
                   style: Styles.textStyle18,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ),

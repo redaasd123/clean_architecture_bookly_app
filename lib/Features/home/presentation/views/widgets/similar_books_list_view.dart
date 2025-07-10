@@ -69,7 +69,9 @@ class _SimilarBooksListviewState extends State<SimilarBooksListview> {
                 onTap: (){
                   launchPreviewLink(widget.bookEntity[index].previewLink);
                 },
-                child: CustomBookImage(image: widget.bookEntity[index].image ?? AssetsData.testImage)),
+                child: CustomBookImage(
+                    book: widget.bookEntity[index],
+                    image: widget.bookEntity[index].image ?? AssetsData.testImage)),
           );
         },
       ),

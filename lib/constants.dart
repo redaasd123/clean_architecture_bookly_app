@@ -6,3 +6,5 @@ const kGtSectraFine = 'GT Sectra Fine';
 const kFeaturedBooks  = 'FeaturedBooks';
 const kNewestBooks  = 'NewestBooks';
 const kSimilarBooks  = 'kSimilarBooks';
+const kSearchBooks  = 'kSearchBooks';
+const kSaveFavorite = 'kSaveFavorite';

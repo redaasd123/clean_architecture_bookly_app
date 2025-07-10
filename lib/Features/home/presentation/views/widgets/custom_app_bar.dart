@@ -5,6 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets.dart';
 
+import 'package:flutter/material.dart';
+import '../../../../../core/utils/assets.dart';
+
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key}) : super(key: key);
 
@@ -14,19 +17,24 @@ class CustomAppBar extends StatelessWidget {
       padding: const EdgeInsets.only(top: 40, bottom: 20),
       child: Row(
         children: [
+          // شعار التطبيق
           Image.asset(
             AssetsData.logo,
             height: 18,
           ),
           const Spacer(),
-          IconButton(
+          // زر القائمة الجانبية
+          Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.menu),
               onPressed: () {
-                GoRouter.of(context).push(AppRouter.kSearchView);
+                Scaffold.of(context).openDrawer();
               },
-              icon: const Icon(
-                FontAwesomeIcons.magnifyingGlass,
-                size: 22,
-              ))
+            ),
+          ),
+
+
+
         ],
       ),
     );

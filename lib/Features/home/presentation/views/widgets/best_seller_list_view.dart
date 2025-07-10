@@ -50,7 +50,7 @@ class _BestSellerListViewState extends State<BestSellerListView> {
             (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: BookListViewItem(bookEntity: widget.books[index]),
+            child: BestSellerListViewItem(bookEntity: widget.books[index]),
           );
         },
         childCount: widget.books.length,

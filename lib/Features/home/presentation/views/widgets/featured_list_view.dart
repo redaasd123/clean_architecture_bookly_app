@@ -66,7 +66,9 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
                 push(AppRouter.kBookDetailsView,
                 extra: widget.book[index]);
               },
-                child: CustomBookImage(image: widget.book[index].image ?? '')),
+                child: CustomBookImage(
+                    book: widget.book[index],
+                    image: widget.book[index].image ?? '')),
           );
         },
       ),

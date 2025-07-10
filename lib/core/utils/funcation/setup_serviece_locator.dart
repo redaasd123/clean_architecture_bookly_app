@@ -1,3 +1,4 @@
+import 'package:bookly_app/Features/search/data/data_source/search_local_data_source.dart';
 import 'package:bookly_app/Features/search/data/data_source/search_remote_data_source.dart';
 import 'package:bookly_app/Features/search/domain/use_case/search_use_case.dart';
 import 'package:dio/dio.dart';
@@ -21,14 +22,22 @@ void setUpServiceLocator() {
     ),
   );
 
-  // 🌐 Search Data Source
+  // 🌐 Search Remote Data Source
   getIt.registerSingleton<SearchRemoteDataSource>(
     SearchRemoteDataSourceImpl(getIt.get<ApiService>()),
   );
 
+  // 💾 Search Local Data Source ✅ أضف ده
+  getIt.registerSingleton<SearchLocalDataSource>(
+    SearchLocalDataSourceImpl(),
+  );
+
   // 🔍 SearchRepo
   getIt.registerSingleton<SearchRepoImpl>(
-    SearchRepoImpl(getIt.get<SearchRemoteDataSource>()),
+    SearchRepoImpl(
+      getIt.get<SearchRemoteDataSource>(),
+      getIt.get<SearchLocalDataSource>(),
+    ),
   );
 
   // 💼 Search UseCase
@@ -36,3 +45,4 @@ void setUpServiceLocator() {
     SearchUseCase(getIt.get<SearchRepoImpl>()),
   );
 }
+
