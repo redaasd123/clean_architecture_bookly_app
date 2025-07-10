@@ -28,7 +28,8 @@ class BookModel extends BookEntity {
     required this.accessInfo,
     this.searchInfo,
   }) : super(
-    previewLink: saleInfo.buyLink ?? volumeInfo.previewLink,
+    webReaderLink: accessInfo.webReaderLink,
+    previewLink: volumeInfo.previewLink,
     category: (volumeInfo.categories?.isNotEmpty ?? false)
         ? volumeInfo.categories!.first
         : "Unknown",
@@ -134,6 +135,7 @@ class AccessInfo {
   };
 }
 
+
 class Epub {
   bool isAvailable;
   String? downloadLink;
@@ -156,19 +158,24 @@ class Epub {
 
 class Pdf {
   bool isAvailable;
+  String? downloadLink;
 
   Pdf({
     required this.isAvailable,
+    this.downloadLink,
   });
 
   factory Pdf.fromJson(Map<String, dynamic> json) => Pdf(
     isAvailable: json["isAvailable"],
+    downloadLink: json["downloadLink"],
   );
 
   Map<String, dynamic> toJson() => {
     "isAvailable": isAvailable,
+    "downloadLink": downloadLink,
   };
 }
+
 
 class SaleInfo {
   String country;

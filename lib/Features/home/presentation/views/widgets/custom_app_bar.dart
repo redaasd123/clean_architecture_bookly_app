@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../../core/theme/theme.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets.dart';
 
@@ -13,14 +15,17 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Provider.of<ThemeProvider>(context).isDark;
     return Padding(
       padding: const EdgeInsets.only(top: 40, bottom: 20),
       child: Row(
         children: [
           // شعار التطبيق
           Image.asset(
-            AssetsData.logo,
-            height: 18,
+            isDark?AssetsData.darkLogo:
+            AssetsData.lightLogo ,
+            height: 24,
+
           ),
           const Spacer(),
           // زر القائمة الجانبية

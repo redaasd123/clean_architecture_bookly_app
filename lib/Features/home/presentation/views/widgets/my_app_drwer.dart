@@ -1,6 +1,8 @@
+import 'package:bookly_app/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import '../../../../../core/utils/app_router.dart';
 
 class MyAppDrawer extends StatelessWidget {
@@ -41,7 +43,7 @@ class MyAppDrawer extends StatelessWidget {
             leading: const Icon(Icons.dark_mode),
             title: const Text('الوضع الليلي'),
             onTap: () {
-             // Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+               Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
             },
           ),
         ],

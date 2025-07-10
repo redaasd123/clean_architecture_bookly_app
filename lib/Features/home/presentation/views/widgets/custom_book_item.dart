@@ -17,18 +17,22 @@ class CustomBookImage extends StatelessWidget {
     final favoriteBox = Hive.box<BookEntity>(kSaveFavorite);
     return Stack(
       children: [
-        AspectRatio(
-          aspectRatio: 2.6 / 4,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.network(
-              image,
-              height: 200,
-              width: 130,
-              fit: BoxFit.cover,
-            ),
+      AspectRatio(
+      aspectRatio: 2.6 / 4,
+      child: Hero(
+        tag: book.bookId, // لازم تكون قيمة فريدة ومطابقة في التفاصيل
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Image.network(
+            image,
+            height: 200,
+            width: 130,
+            fit: BoxFit.cover,
           ),
         ),
+      ),
+    ),
+
         Positioned(
           top: 8,
           right: 8,

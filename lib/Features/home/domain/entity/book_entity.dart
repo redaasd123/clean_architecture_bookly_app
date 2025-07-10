@@ -30,7 +30,11 @@ class BookEntity {
   @HiveField(8)
   final String previewLink;
 
+  @HiveField(9)
+  final String webReaderLink;
+
   BookEntity({
+    required this.webReaderLink,
     required this.bookId,
     required this.title,
     required this.authorName,

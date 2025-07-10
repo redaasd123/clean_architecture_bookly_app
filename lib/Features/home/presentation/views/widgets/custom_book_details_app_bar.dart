@@ -1,5 +1,6 @@
 import 'package:bookly_app/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomBookDetailsAppBar extends StatelessWidget {
@@ -14,14 +15,16 @@ class CustomBookDetailsAppBar extends StatelessWidget {
           onPressed: () {
             GoRouter.of(context).pop();
           },
-          icon: const Icon(Icons.close),
+          icon: const Icon(
+            size: 30,
+            Icons.close,),
         ),
         IconButton(
           onPressed: () {
-            GoRouter.of(context).push(AppRouter.kFavouriteView);
+            GoRouter.of(context).push(AppRouter.kSearchView);
           },
           icon: const Icon(
-            Icons.favorite,
+            FontAwesomeIcons.magnifyingGlass,
             color: Colors.red,
           ),
         )

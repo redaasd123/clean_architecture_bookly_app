@@ -67,7 +67,9 @@ class BookDetailsSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
         ),
         const SizedBox(height: 20),
-        BooksAction(preViewLink: bookEntity.previewLink),
+        BooksAction(
+          webReaderLink: bookEntity.webReaderLink,
+            preViewLink: bookEntity.previewLink),
         const SizedBox(height: 3),
       ],
     );

@@ -16,8 +16,3 @@ class HomeView extends StatelessWidget {
     );
   }
 }
-// icon: FontAwesomeIcons.magnifyingGlass,
-//                   onPressed: (){
-//                     GoRouter.of(context).push(AppRouter.kSearchView);
-//
-//                   },

@@ -23,10 +23,12 @@ class _FavouriteViewBodyState extends State<FavouriteViewBody> {
   Widget build(BuildContext context) {
     final favoriteBox = Hive.box<BookEntity>(kSaveFavorite);
 
-    return Scaffold(
-      body: Column(
+    return Column(
         children: [
-          CustomAppBar(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18),
+            child: CustomAppBar(),
+          ),
 
           Expanded(
             child: ValueListenableBuilder(
@@ -47,7 +49,7 @@ class _FavouriteViewBodyState extends State<FavouriteViewBody> {
             ),
           ),
         ],
-      ),
+
     );
   }
 

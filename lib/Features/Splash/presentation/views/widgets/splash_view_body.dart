@@ -2,7 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../../core/theme/theme.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets.dart';
 import 'sliding_text.dart';
@@ -36,12 +38,14 @@ class _SplashViewbodyState extends State<SplashViewbody>
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Provider.of<ThemeProvider>(context).isDark;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Image.asset(
-            AssetsData.logo),
+            isDark?AssetsData.darkLogo:AssetsData.lightLogo),
         const SizedBox(
           height: 4,
         ),

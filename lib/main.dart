@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:provider/provider.dart';
 import 'constants.dart';
 import 'core/theme/theme.dart';
 import 'core/utils/app_router.dart';
@@ -23,6 +24,11 @@ void main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
+    await Hive.deleteBoxFromDisk(kFeaturedBooks);
+  await Hive.deleteBoxFromDisk(kNewestBooks);
+  await Hive.deleteBoxFromDisk(kSimilarBooks);
+  await Hive.deleteBoxFromDisk(kSearchBooks);
+  await Hive.deleteBoxFromDisk(kSaveFavorite);
 
   await Hive.openBox<BookEntity>(kFeaturedBooks);
   await Hive.openBox<BookEntity>(kNewestBooks);
@@ -39,14 +45,6 @@ void main() async {
       child: const BooklyApp(),
     ),
   );
-}
-
-
-
-Future<void> clearAllHiveCache() async {
-  await Hive.box<BookEntity>(kFeaturedBooks).clear();
-  await Hive.box<BookEntity>(kNewestBooks).clear();
-  print('✅ تم مسح بيانات Hive المؤقتة بنجاح');
 }
 
 class BooklyApp extends StatelessWidget {
@@ -96,3 +94,10 @@ class BooklyApp extends StatelessWidget {
 //   // await Hive.deleteBoxFromDisk(kSimilarBooks);
 //   // await Hive.deleteBoxFromDisk(kSearchBooks);
 //   // await Hive.deleteBoxFromDisk(kSaveFavorite);
+
+
+// Future<void> clearAllHiveCache() async {
+//   await Hive.box<BookEntity>(kFeaturedBooks).clear();
+//   await Hive.box<BookEntity>(kNewestBooks).clear();
+//   print('✅ تم مسح بيانات Hive المؤقتة بنجاح');
+// }
