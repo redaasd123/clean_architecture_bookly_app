@@ -26,7 +26,6 @@ class SearchViewBody extends StatelessWidget {
               ],
             ),
           ),
-          // ✅ نتائج البحث
           ResultSearchListViewBlocBuilder()
         ],
       ),

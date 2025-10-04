@@ -14,7 +14,7 @@ class NewestBookListViewLoadingFading extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: CustomFadingWidget(
-              delay: Duration(milliseconds: index * 100), // كل عنصر يتأخر شوية
+              delay: Duration(milliseconds: index * 100),
               child: const CustomBookBestSellerLoadingFading(),
             ),
           );

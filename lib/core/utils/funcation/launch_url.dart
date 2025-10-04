@@ -1,7 +1,6 @@
 import 'package:url_launcher/url_launcher.dart';
 
 Future<void> launchPreviewLink(String url) async {
-  // تأكد إن الرابط يبدأ بـ https
   if (url.startsWith('http://')) {
     url = url.replaceFirst('http://', 'https://');
   }

@@ -14,6 +14,5 @@ abstract class HomeRepo{
   fetchSimilarBooks({ required String category,int pageNumber = 0 });
 
 
-  // اي ميثود هنا بتمثل    usecase
-  //الدومين هي اللي بيتحدد فيها اية اللي هيحصل في التطبيق بتاعي//
+
 }

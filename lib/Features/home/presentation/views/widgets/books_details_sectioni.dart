@@ -1,22 +1,13 @@
 import 'package:bookly_app/Features/home/domain/entity/book_entity.dart';
 import 'package:bookly_app/core/utils/assets.dart';
-import 'package:bookly_app/core/utils/funcation/show_snack_bar.dart';
-import 'package:flutter/material.dart';
-
-import '../../../../../core/helper/favourite_helper.dart';
-import '../../../../../core/utils/styles.dart';
-import 'book_rating.dart';
-import 'books_action.dart';
-import 'custom_book_item.dart';
-
-import 'package:bookly_app/Features/home/domain/entity/book_entity.dart';
-import 'package:bookly_app/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/styles.dart';
 import 'book_rating.dart';
 import 'books_action.dart';
 import 'custom_book_item.dart';
+
+
 
 class BookDetailsSection extends StatelessWidget {
   const BookDetailsSection({super.key, required this.bookEntity});

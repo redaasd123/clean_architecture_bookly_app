@@ -18,7 +18,6 @@ class FeaturedBooksListViewBlocBuilder extends StatefulWidget {
   State<FeaturedBooksListViewBlocBuilder> createState() => _FeaturedBooksListViewBlocBuilderState();
 }
 class _FeaturedBooksListViewBlocBuilderState extends State<FeaturedBooksListViewBlocBuilder> {
-//  هنا كنت بعرض 10 كتب بس اللي جاية ف انا عملت ليست فاضية اخزن فيها كل الكتب وهي اللي اعرض منها
   List<BookEntity> books = [];
   @override
   Widget build(BuildContext context) {

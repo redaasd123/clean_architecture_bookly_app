@@ -25,7 +25,7 @@ final String preViewLink;
      onPressed: () {
        if (webReaderLink.isNotEmpty) {
          GoRouter.of(context).push(AppRouter.kWebView,
-           extra: webReaderLink, // ✅ نمرر الرابط هنا
+           extra: webReaderLink,
          );
        } else {
          ScaffoldMessenger.of(context).showSnackBar(

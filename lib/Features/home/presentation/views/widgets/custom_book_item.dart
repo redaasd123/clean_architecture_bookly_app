@@ -20,7 +20,7 @@ class CustomBookImage extends StatelessWidget {
       AspectRatio(
       aspectRatio: 2.6 / 4,
       child: Hero(
-        tag: book.bookId, // لازم تكون قيمة فريدة ومطابقة في التفاصيل
+        tag: book.bookId,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: Image.network(

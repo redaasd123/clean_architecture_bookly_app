@@ -20,7 +20,6 @@ class CustomAppBar extends StatelessWidget {
       padding: const EdgeInsets.only(top: 40, bottom: 20),
       child: Row(
         children: [
-          // شعار التطبيق
           Image.asset(
             isDark?AssetsData.darkLogo:
             AssetsData.lightLogo ,
@@ -28,7 +27,6 @@ class CustomAppBar extends StatelessWidget {
 
           ),
           const Spacer(),
-          // زر القائمة الجانبية
           Builder(
             builder: (context) => IconButton(
               icon: const Icon(Icons.menu),

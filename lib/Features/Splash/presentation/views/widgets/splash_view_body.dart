@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,14 +8,14 @@ import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets.dart';
 import 'sliding_text.dart';
 
-class SplashViewbody extends StatefulWidget {
-  const SplashViewbody({Key? key}) : super(key: key);
+class SplashViewBody extends StatefulWidget {
+  const SplashViewBody({Key? key}) : super(key: key);
 
   @override
-  State<SplashViewbody> createState() => _SplashViewbodyState();
+  State<SplashViewBody> createState() => _SplashViewBodyState();
 }
 
-class _SplashViewbodyState extends State<SplashViewbody>
+class _SplashViewBodyState extends State<SplashViewBody>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<Offset> slidingAnimation;
@@ -44,11 +43,8 @@ class _SplashViewbodyState extends State<SplashViewbody>
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image.asset(
-            isDark?AssetsData.darkLogo:AssetsData.lightLogo),
-        const SizedBox(
-          height: 4,
-        ),
+        Image.asset(isDark ? AssetsData.darkLogo : AssetsData.lightLogo),
+        const SizedBox(height: 4),
         SlidingText(slidingAnimation: slidingAnimation),
       ],
     );
@@ -60,24 +56,17 @@ class _SplashViewbodyState extends State<SplashViewbody>
       duration: const Duration(seconds: 1),
     );
 
-    slidingAnimation =
-        Tween<Offset>(begin: const Offset(0, 2), end: Offset.zero)
-            .animate(animationController);
+    slidingAnimation = Tween<Offset>(
+      begin: const Offset(0, 2),
+      end: Offset.zero,
+    ).animate(animationController);
 
     animationController.forward();
   }
 
   void navigateToHome() {
-    Future.delayed(
-      const Duration(seconds : 2),
-      () {
-        // Get.to(() => const HomeView(),
-        //     // calculations
-        //     transition: Transition.fade,
-        //     duration: kTranstionDuration);
-
-        GoRouter.of(context).push(AppRouter.kHomeView);
-      },
-    );
+    Future.delayed(const Duration(seconds: 2), () {
+      GoRouter.of(context).push(AppRouter.kHomeView);
+    });
   }
 }

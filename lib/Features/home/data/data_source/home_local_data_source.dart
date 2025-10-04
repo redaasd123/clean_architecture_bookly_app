@@ -33,8 +33,7 @@ class HomeLocalDataSourceImpl extends HomeLocalDataSource{
     int endIndex = (pageNumber + 1) * 10;
     var box = Hive.box<BookEntity>(kNewestBooks);
     int length = box.values.length;
-    print('📦 Hive cache length: ${box.values.length}');
-    print('🔎 Getting books from $startIndex to $endIndex');
+
 
     if (startIndex >= length) {
       return [];

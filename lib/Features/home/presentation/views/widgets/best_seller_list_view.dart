@@ -44,7 +44,6 @@ class _BestSellerListViewState extends State<BestSellerListView> {
 
   @override
   Widget build(BuildContext context) {
-    print("📚 عدد الكتب المعروضة: ${widget.books.length}");
     return SliverList(
       delegate: SliverChildBuilderDelegate(
             (context, index) {

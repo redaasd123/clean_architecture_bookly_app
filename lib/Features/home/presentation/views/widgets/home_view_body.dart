@@ -37,7 +37,6 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
 
-        // ✅ حطيتها كده مباشرة لأنها Sliver بالفعل
         SliverPadding(
           padding: EdgeInsets.symmetric(horizontal: 30),
           sliver: BestSellerListViewBlocBuilder(),

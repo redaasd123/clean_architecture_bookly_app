@@ -27,7 +27,6 @@ void setUpServiceLocator() {
     SearchRemoteDataSourceImpl(getIt.get<ApiService>()),
   );
 
-  // 💾 Search Local Data Source ✅ أضف ده
   getIt.registerSingleton<SearchLocalDataSource>(
     SearchLocalDataSourceImpl(),
   );

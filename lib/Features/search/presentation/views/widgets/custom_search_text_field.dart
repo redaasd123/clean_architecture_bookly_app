@@ -50,7 +50,6 @@ class CustomSearchTextField extends StatelessWidget {
         const SizedBox(height: 10),
 
         // ✅ الاقتراحات التلقائية
-        // ✅ اقتراحات البحث
         SuggestionListViewBlocBuilder(),
       ],
     );

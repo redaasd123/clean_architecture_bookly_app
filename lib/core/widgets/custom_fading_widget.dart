@@ -7,7 +7,7 @@ class CustomFadingWidget extends StatefulWidget {
   const CustomFadingWidget({
     super.key,
     required this.child,
-    this.delay = Duration.zero, // تأخير اختياري
+    this.delay = Duration.zero,
   });
 
   @override

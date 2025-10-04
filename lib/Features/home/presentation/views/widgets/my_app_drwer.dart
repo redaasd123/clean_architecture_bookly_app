@@ -18,7 +18,7 @@ class MyAppDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.blue,
             ),
-            child: Text(
+            child: const Text(
               'Bookly App 📚',
               style: TextStyle(color: Colors.white, fontSize: 24),
             ),
@@ -28,7 +28,7 @@ class MyAppDrawer extends StatelessWidget {
             title: const Text('المفضلة'),
             onTap: () {
               Navigator.pop(context); // يقفل Drawer
-              GoRouter.of(context).push(AppRouter.kFavouriteView); // غيرها حسب المسار
+              GoRouter.of(context).push(AppRouter.kFavouriteView);
             },
           ),
           ListTile(

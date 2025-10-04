@@ -11,7 +11,7 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const  Scaffold(
     
-      body: SplashViewbody(),
+      body: SplashViewBody(),
     );
   }
 }

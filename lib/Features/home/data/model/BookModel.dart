@@ -17,7 +17,6 @@ class BookModel extends BookEntity {
   AccessInfo accessInfo;
   SearchInfo? searchInfo;
 
-  // ✅ استخدمنا Constructor داخلي لحل مشكلة volumeInfo في الـ super
   BookModel._internal({
     required this.kind,
     required this.id,
@@ -26,8 +25,8 @@ class BookModel extends BookEntity {
     required this.volumeInfo,
     required this.saleInfo,
     required this.accessInfo,
-    this.searchInfo,
-  }) : super(
+    this.searchInfo,})
+      : super(
     webReaderLink: accessInfo.webReaderLink,
     previewLink: volumeInfo.previewLink,
     category: (volumeInfo.categories?.isNotEmpty ?? false)

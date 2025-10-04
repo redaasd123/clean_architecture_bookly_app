@@ -25,11 +25,8 @@ class SearchCubit extends Cubit<SearchState> {
           (failure) => emit(SearchFailureState(errMessage: failure.errMessage)),
           (books) async {
         final box = Hive.box<BookEntity>(kSearchBooks);
+       // await box.clear();
 
-        // 🟡 امسح البيانات القديمة (اختياري حسب الاستخدام)
-        await box.clear();
-
-        // 🟢 خزّن البيانات الجديدة
         for (var book in books) {
           await box.add(book);
         }

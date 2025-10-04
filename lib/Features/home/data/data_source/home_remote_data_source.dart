@@ -25,7 +25,6 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
     return books;
   }
 
-
   @override
   Future<List<BookEntity>> fetchNewestBook({int pageNumber = 0}) async {
     var data = await apiService.get(endPoint:
@@ -57,7 +56,6 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
             books.add(BookModel.fromJson(bookMap));
           }
         } catch (e) {
-          // تجاهل العناصر اللي حصل فيها خطأ أثناء التحويل
           continue;
         }
       }

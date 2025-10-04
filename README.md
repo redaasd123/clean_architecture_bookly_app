@@ -1,16 +1,60 @@
-# bookly_app
+# 📚 Bookly App
 
-A new Flutter project.
+A modern Flutter application built using **Clean Architecture**.  
+Bookly App allows users to explore books, view detailed information, manage favorites, search for titles, and open preview links — all with a beautiful UI supporting **Light** and **Dark Mode**.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+✅ View popular and featured books  
+✅ Book details including:
+- Title
+- Author
+- Rating
+- Cover Image  
+  ✅ Preview book via external link  
+  ✅ Add and remove from Favorites  
+  ✅ Search for books  
+  ✅ Pagination support for smooth loading  
+  ✅ Light & Dark Mode toggle  
+  ✅ Built with **Clean Code Structure** for maintainability
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🧠 Tech Stack
+
+- **Flutter** (Dart)
+- **Clean Architecture**
+- **BLoC / Cubit**
+- **Provider** (for theme management)
+- **GoRouter** (for navigation)
+- **Font Awesome** (icons)
+- **Google Books API**
+
+---
+
+## 🖼️ Screenshots
+
+| Home Page | Book Details | Loading |
+|------------|---------------|----------|
+| ![Home](assets/images/home_page.jpeg) | ![Details](assets/images/detail.jpeg) | ![Loading](assets/images/loading.jpeg) |
+
+---
+
+## 🏗️ Project Structure
+
+
+- Organized with **Clean Architecture principles**
+- Each feature contains `data`, `domain`, and `presentation` layers
+
+---
+
+## 🌗 Theme Support
+
+Easily switch between **Light** 🌞 and **Dark** 🌙 modes from the drawer menu.
+
+---
+
+
+

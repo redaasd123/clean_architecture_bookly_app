@@ -1,13 +1,11 @@
 import 'package:bookly_app/Features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/favourite_list_view.dart';
 import 'package:bookly_app/constants.dart';
-import 'package:bookly_app/core/utils/funcation/show_snack_bar.dart';
 import 'package:bookly_app/core/utils/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
-import '../../../../../core/helper/favourite_helper.dart';
 import '../../../domain/entity/book_entity.dart';
 
 

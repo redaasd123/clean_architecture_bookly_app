@@ -24,12 +24,12 @@ void main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
-    await Hive.deleteBoxFromDisk(kFeaturedBooks);
-  await Hive.deleteBoxFromDisk(kNewestBooks);
-  await Hive.deleteBoxFromDisk(kSimilarBooks);
-  await Hive.deleteBoxFromDisk(kSearchBooks);
-  await Hive.deleteBoxFromDisk(kSaveFavorite);
 
+  Hive.deleteBoxFromDisk(kFeaturedBooks);
+  Hive.deleteBoxFromDisk(kNewestBooks);
+  Hive.deleteBoxFromDisk(kSimilarBooks);
+  Hive.deleteBoxFromDisk(kSearchBooks);
+  Hive.deleteBoxFromDisk(kSaveFavorite);
   await Hive.openBox<BookEntity>(kFeaturedBooks);
   await Hive.openBox<BookEntity>(kNewestBooks);
   await Hive.openBox<BookEntity>(kSimilarBooks);
@@ -80,24 +80,9 @@ class BooklyApp extends StatelessWidget {
           textTheme:
           GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
         ),
-        themeMode: themeProvider.themeMode, // ✅ هنا بيبدّل بين الوضعين
+        themeMode: themeProvider.themeMode,
       ),
     );
   }
 }
 
-
-
-//  // ✅ امسح قبل ما تفتح أي صندوق
-//   // await Hive.deleteBoxFromDisk(kFeaturedBooks);
-//   // await Hive.deleteBoxFromDisk(kNewestBooks);
-//   // await Hive.deleteBoxFromDisk(kSimilarBooks);
-//   // await Hive.deleteBoxFromDisk(kSearchBooks);
-//   // await Hive.deleteBoxFromDisk(kSaveFavorite);
-
-
-// Future<void> clearAllHiveCache() async {
-//   await Hive.box<BookEntity>(kFeaturedBooks).clear();
-//   await Hive.box<BookEntity>(kNewestBooks).clear();
-//   print('✅ تم مسح بيانات Hive المؤقتة بنجاح');
-// }
