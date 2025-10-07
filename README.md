@@ -1,7 +1,8 @@
 # 📚 Bookly App
 
 A modern Flutter application built using **Clean Architecture**.  
-Bookly App allows users to explore books, view detailed information, manage favorites, search for titles, and open preview links — all with a beautiful UI supporting **Light** and **Dark Mode**.
+Bookly App allows users to explore books, view detailed information, manage favorites, search for
+titles, and open preview links — all with a beautiful UI supporting **Light** and **Dark Mode**.
 
 ---
 
@@ -9,6 +10,7 @@ Bookly App allows users to explore books, view detailed information, manage favo
 
 ✅ View popular and featured books  
 ✅ Book details including:
+
 - Title
 - Author
 - Rating
@@ -37,13 +39,12 @@ Bookly App allows users to explore books, view detailed information, manage favo
 ## 🖼️ Screenshots
 
 | Home Page | Book Details | Loading |
-|------------|---------------|----------|
-| ![Home](assets/images/home_page.jpeg) | ![Details](assets/images/detail.jpeg) | ![Loading](assets/images/loading.jpeg) |
+|---------------------------------------|---------------------------------------|----------------------------------------|----------------------------------------|
+| ![Home](assets/images/home_page.jpeg) | ![Details](assets/images/detail.jpeg) | ![Loading](assets/images/loading.jpeg) | ![Search](assets/images/search.jpeg)
 
 ---
 
 ## 🏗️ Project Structure
-
 
 - Organized with **Clean Architecture principles**
 - Each feature contains `data`, `domain`, and `presentation` layers
